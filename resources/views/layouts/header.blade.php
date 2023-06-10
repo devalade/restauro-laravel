@@ -11,7 +11,7 @@
         <x-dropdown>
             <x-slot name="trigger">
                 <button @click="dropdownOpen = ! dropdownOpen" class="relative block overflow-hidden">
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->nom }}
                 </button>
             </x-slot>
 

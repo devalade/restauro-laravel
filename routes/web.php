@@ -26,7 +26,10 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('userss', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::get('users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('users', [UserController::class, 'update'])->name('users.update');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

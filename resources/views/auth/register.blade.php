@@ -8,15 +8,51 @@
 
         <!-- Name -->
         <div>
-            <x-input-label for="name" :value="__('Name')"/>
+            <x-input-label for="nom" :value="__('Nom')"/>
             <x-text-input type="text"
-                     name="name"
-                     id="name"
-                     value="{{ old('name') }}"
+                     name="nom"
+                     id="nom"
+                     value="{{ old('nom') }}"
                      required
                      autofocus
             />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-error :messages="$errors->get('nom')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="prenom" :value="__('Prenom')"/>
+            <x-text-input type="text"
+                     name="prenom"
+                     id="prenom"
+                     value="{{ old('prenom') }}"
+                     required
+                     autofocus
+            />
+            <x-input-error :messages="$errors->get('prenom')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="sexe" :value="__('Sexe')"/>
+            <x-text-input type="text"
+                     name="sexe"
+                     id="sexe"
+                     value="{{ old('sexe') }}"
+                     required
+                     autofocus
+            />
+            <x-input-error :messages="$errors->get('sexe')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="contact" :value="__('Contact')"/>
+            <x-text-input type="text"
+                     name="contact"
+                     id="contact"
+                     value="{{ old('contact') }}"
+                     required
+                     autofocus
+            />
+            <x-input-error :messages="$errors->get('contact')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

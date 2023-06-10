@@ -31,14 +31,47 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4">
                     <div>
-                        <x-input-label for="name" :value="__('Name')"/>
+                        <x-input-label for="nom" :value="__('Nom')"/>
                         <x-text-input type="text"
-                                 name="name"
-                                 id="name"
-                                 value="{{ old('name', auth()->user()->name) }}"
+                                 name="nom"
+                                 id="nom"
+                                 value="{{ old('nom', auth()->user()->nom) }}"
                                  required
                         />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input-error :messages="$errors->get('nom')" class="mt-2" />
+                    </div>
+
+                    <div>
+                        <x-input-label for="prenom" :value="__('Prenom')"/>
+                        <x-text-input type="text"
+                                 name="prenom"
+                                 id="prenom"
+                                 value="{{ old('prenom', auth()->user()->prenom) }}"
+                                 required
+                        />
+                        <x-input-error :messages="$errors->get('nom')" class="mt-2" />
+                    </div>
+
+                    <div>
+                        <x-input-label for="sexe" :value="__('Sexe')"/>
+                        <x-text-input type="text"
+                                 name="sexe"
+                                 id="sexe"
+                                 value="{{ old('sexe', auth()->user()->sexe) }}"
+                                 required
+                        />
+                        <x-input-error :messages="$errors->get('sexe')" class="mt-2" />
+                    </div>
+
+                    <div>
+                        <x-input-label for="contact" :value="__('Contact')"/>
+                        <x-text-input type="text"
+                                 name="contact"
+                                 id="contact"
+                                 value="{{ old('contact', auth()->user()->contact) }}"
+                                 required
+                        />
+                        <x-input-error :messages="$errors->get('contact')" class="mt-2" />
                     </div>
 
                     <div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Users') }}
+        {{ __('Liste des Utilisateurs') }}
     </x-slot>
 
     <div class="mb-4 inline-flex overflow-hidden w-full bg-white rounded-lg shadow-md">
@@ -23,10 +23,25 @@
             <thead>
             <tr>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Name
+                    ID
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Nom
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Prenom
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Sexe
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Contact
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                     Email
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Action
                 </th>
             </tr>
             </thead>
@@ -34,10 +49,26 @@
             @foreach($users as $user)
                 <tr>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->name }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->id }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->nom }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->prenom }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->sexe }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->contact }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <p class="text-gray-900 whitespace-no-wrap">{{ $user->email }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <a href="{{route('users.edit', $user->id)}}"><button class="bg-blue-500 text-white px-4 py-2 rounded">Editer</button></a>
+                        <a href="{{route('users.destroy', $user->id)}}"><button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button></a>
                     </td>
                 </tr>
             @endforeach

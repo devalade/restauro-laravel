@@ -18,9 +18,27 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="nom" :value="__('Nom')" />
+            <x-text-input id="nom" name="nom" type="text" class="mt-1 block w-full" :value="old('nom', $user->nom)" required autofocus autocomplete="nom" />
+            <x-input-error class="mt-2" :messages="$errors->get('nom')" />
+        </div>
+
+        <div>
+            <x-input-label for="prenom" :value="__('Prenom')" />
+            <x-text-input id="prenom" name="prenom" type="text" class="mt-1 block w-full" :value="old('prenom', $user->prenom)" required autofocus autocomplete="prenom" />
+            <x-input-error class="mt-2" :messages="$errors->get('prenom')" />
+        </div>
+
+        <div>
+            <x-input-label for="sexe" :value="__('Sexe')" />
+            <x-text-input id="sexe" name="sexe" type="text" class="mt-1 block w-full" :value="old('sexe', $user->sexe)" required autofocus autocomplete="sexe" />
+            <x-input-error class="mt-2" :messages="$errors->get('sexe')" />
+        </div>
+
+        <div>
+            <x-input-label for="contact" :value="__('Contact')" />
+            <x-text-input id="contact" name="contact" type="text" class="mt-1 block w-full" :value="old('contact', $user->contact)" required autofocus autocomplete="contact" />
+            <x-input-error class="mt-2" :messages="$errors->get('contact')" />
         </div>
 
         <div>
