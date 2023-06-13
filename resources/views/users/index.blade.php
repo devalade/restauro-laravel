@@ -41,6 +41,9 @@
                     Email
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Role
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                     Action
                 </th>
             </tr>
@@ -67,8 +70,19 @@
                         <p class="text-gray-900 whitespace-no-wrap">{{ $user->email }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ implode(', ', $user->roles()->get()->pluck('nom')->toArray()) }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        @can('edit-users')                            
                         <a href="{{route('users.edit', $user->id)}}"><button class="bg-blue-500 text-white px-4 py-2 rounded">Editer</button></a>
-                        <a href="{{route('users.destroy', $user->id)}}"><button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button></a>
+                        @endcan
+                        @can('delete-users')
+                        <form action="{{route('users.destroy', $user->id)}}" method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-red-500 text-white px-4 py-2 rounded">Supprimer</button>
+                        </form>
+                        @endcan
                     </td>
                 </tr>
             @endforeach

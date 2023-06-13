@@ -26,10 +26,18 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::get('userss', [UserController::class, 'index'])->name('users.index');
-    Route::get('users/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::get('users/destroy', [UserController::class, 'destroy'])->name('users.destroy');
-    Route::get('users', [UserController::class, 'update'])->name('users.update');
+    Route::get('users', [UserController::class, 'index'])
+        ->name('users.index')
+        ->middleware('can:manager-users');
+    Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+        ->name('users.edit')
+        ->middleware('can:manager-users');
+    Route::delete('users/{user}/destroy', [UserController::class, 'destroy'])
+        ->name('users.destroy')
+        ->middleware('can:manager-users');
+    Route::patch('users/{user}/update', [UserController::class, 'update'])
+        ->name('users.update')
+        ->middleware('can:manager-users');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
