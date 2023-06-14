@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('libelle');
             $table->string('slug')->unique();
+            $table->foreignId('created_by')->references('id')->on('users');
             $table->timestamps();
         });
     }

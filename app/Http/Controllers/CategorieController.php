@@ -27,6 +27,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
+        return view('categories.create');
     }
 
     /**
@@ -35,7 +36,7 @@ class CategorieController extends Controller
     public function store(StoreCategorieRequest $request)
     {
         Categorie::create($request->validated() + ['created_by' => Auth::user()->id]);
-        return Redirect::route('categories.store')->with('succes', 'Catégorie ajoutée avec succès.');
+        return Redirect::back()->with('success', 'Catégorie ajoutée avec succès.');
     }
 
     /**

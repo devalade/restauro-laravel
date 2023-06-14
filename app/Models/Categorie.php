@@ -11,6 +11,7 @@ class Categorie extends Model
 
     protected $fillable = [
         'libelle',
-        'slug'
+        'slug',
+        'created_by'
     ];
 }
