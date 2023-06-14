@@ -11,7 +11,6 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
     }
 
     public function index()
@@ -23,15 +22,12 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if (Gate::denies('edit-users')) {
-            return redirect()->route('users.index');
-        }
         $roles = Role::all();
         return view('users.edit', [
             'user' => $user,
             'roles' => $roles
         ]);
-        
+
     }
 
     public function update(Request $request, User $user)
@@ -48,9 +44,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        if (Gate::denies('delete-users')) {
-            return redirect()->route('users.index');
-        }
         $user->roles()->detach();
         $user->delete();
         return redirect()->route('users.index');

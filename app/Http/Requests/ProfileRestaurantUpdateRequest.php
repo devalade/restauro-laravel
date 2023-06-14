@@ -3,8 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
-class StoreCategorieRequest extends FormRequest
+class ProfileRestaurantUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +24,10 @@ class StoreCategorieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'designation' => ['required', 'string', 'max:200'],
+            'description' => ['required', 'string', 'max:200'],
+            'contact' => ['required', 'string', 'starts_with:+229'],
+            'email' => ['required', 'email', 'string', 'max:255', Rule::unique('restaurants')->ignore(Auth::user()->restaurant)],
         ];
     }
 }

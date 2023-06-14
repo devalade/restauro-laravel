@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Restaurant;
 use App\Models\Role;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -50,6 +51,14 @@ class RegisteredUserController extends Controller
         ]);
         $role = Role::select('id')->where('nom', 'client')->first();
         $user->roles()->attach($role);
+
+        Restaurant::create([
+            'designation' => 'Mon restaurant',
+            'description' => 'Une description sur mon resto',
+            'email' => $request->email,
+            'contact' => $request->contact,
+            'created_by' => $user->id
+        ]);
 
         event(new Registered($user));
 

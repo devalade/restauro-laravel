@@ -4,6 +4,8 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -47,13 +49,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function restaurant(): HasOne {
+        return $this->hasOne(Restaurant::class, 'created_by');
+    }
 
-    public function roles() {
+    public function roles(): BelongsToMany {
         return $this->belongsToMany(Role::class);
     }
 
     /* fonction qui permet de savoir si l'utilisateur est admin */
-    public function isAdmin(){
+    public function isAdmin(): User {
         return $this->roles()->where('nom', 'admin')->first();
     }
 

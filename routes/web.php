@@ -26,21 +26,14 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [UserController::class, 'index'])
-        ->name('users.index')
-        ->middleware('can:manager-users');
-    Route::get('/users/{user}/edit', [UserController::class, 'edit'])
-        ->name('users.edit')
-        ->middleware('can:manager-users');
-    Route::delete('users/{user}/destroy', [UserController::class, 'destroy'])
-        ->name('users.destroy')
-        ->middleware('can:manager-users');
-    Route::patch('users/{user}/update', [UserController::class, 'update'])
-        ->name('users.update')
-        ->middleware('can:manager-users');
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}', [UserController::class, 'edit'])->name('users.edit');
+    Route::patch('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/restaurant', [ProfileController::class, 'updateRestaurant'])->name('profile.restaurant.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('My profile') }}
+        Mon profile
     </x-slot>
 
     @if ($message = Session::get('success'))
@@ -15,7 +15,7 @@
 
             <div class="px-4 py-2 -mx-3">
                 <div class="mx-3">
-                    <span class="font-semibold text-green-500">Success</span>
+                    <span class="font-semibold text-green-500">Succès</span>
                     <p class="text-sm text-gray-600">{{ $message }}</p>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div>
-                        <x-input-label for="prenom" :value="__('Prenom')"/>
+                        <x-input-label for="prenom" :value="__('Prénom')"/>
                         <x-text-input type="text"
                                  name="prenom"
                                  id="prenom"
@@ -86,7 +86,7 @@
                     </div>
 
                     <div>
-                        <x-input-label for="password" :value="__('Password')"/>
+                        <x-input-label for="password" :value="__('Mot de passe')"/>
                         <x-text-input type="password"
                                  name="password"
                                  id="password"
@@ -95,7 +95,7 @@
                     </div>
 
                     <div>
-                        <x-input-label for="password_confirmation" :value="__('Confirm Password')"/>
+                        <x-input-label for="password_confirmation" :value="__('Confirmation de mot de passe')"/>
                         <x-text-input type="password"
                                  name="password_confirmation"
                                  id="password_confirmation"
@@ -106,7 +106,7 @@
 
                 <div class="flex justify-end mt-4">
                     <x-primary-button>
-                        {{ __('Submit') }}
+                        Enregistrer
                     </x-primary-button>
                 </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileRestaurantUpdateRequest;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -37,6 +38,16 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
+    public function updateRestaurant(ProfileRestaurantUpdateRequest $request): RedirectResponse
+    {
+        dd($request->validated());
+        $restaurant = auth()->user()->restaurant;
+        dd($restaurant);
+        $restaurant->update($request->validated());
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
     /**
      * Delete the user's account.
      */
@@ -56,5 +67,5 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
-    } 
+    }
 }

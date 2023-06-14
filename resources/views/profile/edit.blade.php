@@ -7,6 +7,12 @@
         <div class="overflow-hidden shadow-sm sm:rounded-lg space-y-6">
             <div class="p-6 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    @include('profile.partials.update-restaurant-information-form')
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
