@@ -5,22 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class Statut_Table extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'libelle',
-        'slug',
         'created_by'
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
+    public function tables(){
+        return $this->hasMany(Table::class);
     }
-
-    public function plats(){
-        return $this->hasMany(Plat::class);
+    
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

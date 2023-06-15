@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreSaleRequest extends FormRequest
+class StoreTableRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,11 @@ class StoreSaleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'numero_table' => 'required',
+            'capacite' => 'required',
+            'statut_table_id' => 'required|exists:statut_tables,id',
+            'created_by' => 'required|exists:users,id'
+
         ];
     }
 }

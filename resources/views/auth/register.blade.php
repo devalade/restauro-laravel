@@ -1,6 +1,6 @@
 <x-guest-layout>
     <a href="/" class="flex justify-center items-center">
-        <h4 class="text-xl font-semibold text-gray-800">Restauro</h4>
+        <h4 class="text-xl font-semibold text-gray-800">Restaurant</h4>
     </a>
 
     <form method="POST" action="{{ route('register') }}">

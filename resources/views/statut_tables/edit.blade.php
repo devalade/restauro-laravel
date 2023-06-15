@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Modifier une catégorie') }}
+        {{ __('Modifier un statut') }}
     </x-slot>
 
 
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
-        <form action="{{route('categories.update', $categorie)}}" method="POST">
+        <form action="{{route('statut_table.update', $statut_Table)}}" method="POST">
             @method('Put')
             @csrf
 
@@ -16,13 +16,13 @@
                         <x-text-input type="text"
                                  name="libelle"
                                  id="libelle"
-                                 value="{{ old('libelle') ?? $categorie->libelle }}"
+                                 value="{{ old('libelle') ?? $statut_Table->libelle }}"
                                  required
                         />
                         <x-input-error :messages="$errors->get('libelle')" class="mt-2" />
                     </div>
                 </div>
-            <x-primary-button>Modifier une catégorie</x-primary-button>
+            <x-primary-button>Modifier un statut</x-primary-button>
         </form>
 
     </div>

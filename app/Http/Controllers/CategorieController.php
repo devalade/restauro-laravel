@@ -9,12 +9,15 @@ use App\Models\User;
 use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class CategorieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+    
     public function index()
     {
         $categories = Categorie::paginate();
@@ -22,26 +25,36 @@ class CategorieController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+   
     public function create()
     {
         return view('categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreCategorieRequest $request)
     {
-        Categorie::create($request->validated() + ['created_by' => Auth::user()->id]);
-        return Redirect::back()->with('success', 'Catégorie ajoutée avec succès.');
-    }
+       
+        // Récupérer l'utilisateur connecté
+        $user = Auth::user();
 
-    /**
-     * Display the specified resource.
-     */
+        // Générer un slug à partir du libellé de la catégorie
+        $slug = Str::slug($request->input('libelle'));
+
+        // Récupérer les données validées et ajouter l'utilisateur connecté et le slug
+        $validatedData = $request->validated();
+        $validatedData['created_by'] = $user->id;
+        $validatedData['slug'] = $slug;
+
+        // Créer une nouvelle catégorie avec les données validées
+        $categorie = Categorie::create($validatedData);
+
+        // Rediriger vers la page de la nouvelle catégorie avec un message de succès
+        return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
+
+    }
+    
+
     public function show(Categorie $categorie)
     {
         return view('categories.show', compact('categorie'));
@@ -60,9 +73,26 @@ class CategorieController extends Controller
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
-        $categorie->update($request->validated());
-        return Redirect::back()->with('succes', 'Catégorie modifiée avec succès.');
+        
+
+        // Générer un nouveau slug à partir du nouveau libellé de la catégorie (s'il a changé)
+        $slug = $categorie->slug;
+        if ($categorie->libelle !== $request->input('libelle')) {
+            $slug = Str::slug($request->input('libelle'));
+        }
+
+        // Mettre à jour les données de la catégorie avec les données validées
+        $categorie->update(array_merge(
+            $request->validated(),
+            ['slug' => $slug]
+        ));
+
+        // Rediriger vers la page de la catégorie modifiée avec un message de succès
+        return redirect()->route('categories.index')->with('success', 'Catégorie modifiée avec succès.');
     }
+
+
+    
 
     /**
      * Remove the specified resource from storage.
@@ -70,6 +100,6 @@ class CategorieController extends Controller
     public function destroy(Categorie $categorie)
     {
         $categorie->delete();
-        return Redirect::back()->with('succes', 'Catégorie modifiée avec succès.');
+        return Redirect::back()->with('succes', 'Catégorie supprimée avec succès.');
     }
 }

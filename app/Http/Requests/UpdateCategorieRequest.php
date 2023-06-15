@@ -22,7 +22,8 @@ class UpdateCategorieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'libelle' => 'required|string|max:255',
+
         ];
     }
 }

@@ -66,4 +66,13 @@ class User extends Authenticatable
     public function hasAnyRole(array $roles) {
         return $this->roles()->whereIn('nom', $roles)->first();
     }
+
+    public function commandes(){
+        return $this->hasMany(Commande::class);
+    }
+
+    public function paiemments(){
+        return $this->hasMany(Paiemment::class);
+    }
+
 }

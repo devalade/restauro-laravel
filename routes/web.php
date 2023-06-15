@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatutTableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,7 +38,28 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile/restaurant', [ProfileController::class, 'updateRestaurant'])->name('profile.restaurant.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('categories', CategorieController::class);
+    Route::get('categories', [CategorieController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [CategorieController::class, 'create'])->name('categories.create');
+    Route::post('categories/store', [CategorieController::class, 'store'])->name('categories.store');
+    Route::get('categories/edit/{categorie}', [CategorieController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/update/{categorie}', [CategorieController::class, 'update'])->name('categories.update')->middleware('auth');
+    Route::delete('categories/destroy/{categorie}', [CategorieController::class, 'destroy'])->name('categories.destroy');
+
+    Route::get('statut_tables', [StatutTableController::class, 'index'])->name('statut_tables.index');
+    Route::get('statut_tables/create', [StatutTableController::class, 'create'])->name('statut_tables.create');
+    Route::post('statut_tables/store', [StatutTableController::class, 'store'])->name('statut_tables.store');
+    Route::get('statut_tables/edit/{statut_Table}', [StatutTableController::class, 'edit'])->name('statut_tables.edit');
+    Route::put('statut_tables/update/{statut_Table}', [StatutTableController::class, 'update'])->name('statut_tables.update')->middleware('auth');
+    Route::delete('statut_tables/destroy/{statut_Table}', [StatutTableController::class, 'destroy'])->name('statut_tables.destroy');
+    
+    Route::get('tables', [TableController::class, 'index'])->name('tables.index');
+    Route::get('tables/create', [TableController::class, 'create'])->name('tables.create');
+    Route::post('tables/store', [TableController::class, 'store'])->name('tables.store');
+    Route::get('tables/edit/{Table}', [TableController::class, 'edit'])->name('tables.edit');
+    Route::put('tables/update/{Table}', [TableController::class, 'update'])->name('tables.update')->middleware('auth');
+    Route::delete('tables/destroy/Table}', [TableController::class, 'destroy'])->name('tables.destroy');
+
+
 });
 
 require __DIR__.'/auth.php';

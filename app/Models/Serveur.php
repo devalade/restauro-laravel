@@ -5,22 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Categorie extends Model
+class Serveur extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'libelle',
-        'slug',
+        'nom',
+        'prenom',
+        'contact',
+        'adresse',
         'created_by'
     ];
 
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    public function plats(){
-        return $this->hasMany(Plat::class);
+    public function commandes(){
+        return $this->hasMany(Commande::class);
     }
 }

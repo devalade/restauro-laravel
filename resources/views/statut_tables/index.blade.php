@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Liste des catégories') }}
+        {{ __('Liste des différents statuts de table') }}
     </x-slot>
 
     <div class="flex justify-end mb-4">
-        <a href="{{ route('categories.create')  }}" class="inline-block">
-            <x-primary-button>Créer une catégorie</x-primary-button>
+        <a href="{{ route('statut_tables.create')  }}" class="inline-block">
+            <x-primary-button>Créer un statut</x-primary-button>
         </a>
     </div>
 
@@ -25,18 +25,18 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($categories as $categorie)
+            @foreach($statutTables as $statutTable)
                 <tr>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $categorie->id }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $statutTable->id }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $categorie->libelle }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $statutTable->libelle }}</p>
                     </td>
 
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
-                        <a href="{{route('categories.edit', $categorie->slug)}}"><button class="text-blue-900">Editer</button></a>
-                        <form action="{{route('categories.destroy', $categorie->slug)}}" method="POST" class="inline">
+                        <a href="{{route('statut_tables.edit', $statutTable->id)}}"><button class="text-blue-900">Editer</button></a>
+                        <form action="{{route('statut_tables.destroy', $statutTable->id)}}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
                             <button class="text-red-800">Supprimer</button>
@@ -48,7 +48,7 @@
         </table>
 
         <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
-            {{ $categories->links() }}
+            {{ $statutTables->links() }}
         </div>
     </div>
 
