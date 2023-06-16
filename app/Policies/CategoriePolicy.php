@@ -29,7 +29,7 @@ class CategoriePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class CategoriePolicy
      */
     public function update(User $user, Categorie $categorie): bool
     {
-        //
+        return true;
     }
 
     /**

@@ -6,7 +6,6 @@ use App\Models\Categorie;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
 use App\Models\User;
-use http\Env\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
@@ -14,10 +13,9 @@ use Illuminate\Support\Str;
 class CategorieController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth');
     }
 
-    
+
     public function index()
     {
         $categories = Categorie::paginate();
@@ -25,16 +23,16 @@ class CategorieController extends Controller
         return view('categories.index', compact('categories'));
     }
 
-   
+
     public function create()
     {
         return view('categories.create');
     }
 
-    
+
     public function store(StoreCategorieRequest $request)
     {
-       
+
         // Récupérer l'utilisateur connecté
         $user = Auth::user();
 
@@ -53,7 +51,7 @@ class CategorieController extends Controller
         return redirect()->route('categories.index')->with('success', 'Catégorie ajoutée avec succès.');
 
     }
-    
+
 
     public function show(Categorie $categorie)
     {
@@ -73,7 +71,7 @@ class CategorieController extends Controller
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
-        
+
 
         // Générer un nouveau slug à partir du nouveau libellé de la catégorie (s'il a changé)
         $slug = $categorie->slug;
@@ -92,7 +90,7 @@ class CategorieController extends Controller
     }
 
 
-    
+
 
     /**
      * Remove the specified resource from storage.
