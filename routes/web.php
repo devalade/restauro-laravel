@@ -60,7 +60,6 @@ Route::middleware('auth')->group(function () {
     Route::put('tables/update/{Table}', [TableController::class, 'update'])->name('tables.update')->middleware('auth');
     Route::delete('tables/destroy/Table}', [TableController::class, 'destroy'])->name('tables.destroy');
 
-
 });
 
 require __DIR__.'/auth.php';

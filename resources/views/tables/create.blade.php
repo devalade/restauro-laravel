@@ -16,7 +16,6 @@
                                   name="numero_table"
                                   id="numero_table"
                                   value="{{ old('numero_table')}}"
-                                  required
                     />
                     <x-input-error :messages="$errors->get('numero_table')" class="mt-2" />
                 </div>
@@ -25,15 +24,19 @@
                     <x-text-input type="text"
                                   name="capacite"
                                   id="capacite"
-                                  value="{{ old('capacite')}}"
-                                  required
+                                  value="{{ old('capacite')}}"                                 
                     />
                     <x-input-error :messages="$errors->get('capacite')" class="mt-2" />
+                </div>
+                <div>
+                    <x-input-label for="image" :value="__('Image')"/>
+                    <input type="file" name="image" id="image">
+                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
 
                 <div>
                     <x-input-label for="statut_table_id" :value="__('Statut Table')"/>
-                    <select id="statut_table_id" name="statut_table_id" required>
+                    <select id="statut_table_id" name="statut_table_id" >
                         <option value=""></option>
                         @foreach($status as $status)
                         <option value="{{ $status->id }}" {{ old('statut_table_id') == $status->id ? 'selected' : '' }}>{{ $status->libelle }}</option>

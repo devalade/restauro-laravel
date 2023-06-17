@@ -12,6 +12,7 @@ class Table extends Model
     protected $fillable = [
         'numero_table',
         'capacite',
+        'image',
         'created_by'
     ];
 

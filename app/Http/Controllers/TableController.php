@@ -15,8 +15,7 @@ class TableController extends Controller
     public function index()
     {
         //$tables = Table::paginate();
-        //$tables = Table::with('statut_table')->get();
-        $tables = Table::join('statut_tables', 'tables.statut_table_id', '=', 'statut_tables.id')->select('tables.*', 'statut_tables.libelle')->paginate();
+        $tables = Table::with('statut_table')->get();
 
         return view('tables.index', compact('tables'));
 
@@ -33,9 +32,11 @@ class TableController extends Controller
     
     public function store(StoreTableRequest $request)
     {
-        $table = new Table;
+        dd('je suis là');
+        $table = new Table();
         $table->numero_table = $request->numero_table;
         $table->capacite = $request->capacite;
+        $table->image = $request->image;
         $table->statut_table_id = $request->statut_table_id;
         $table->created_by = auth()->user()->id;
         $table->save();
@@ -65,6 +66,7 @@ class TableController extends Controller
     {
         $table->numero_table = $request->numero_table;
         $table->capacite = $request->capacite;
+        $table->image = $request->image;
         $table->save();
 
         return redirect()->route('tables.index')->with('success', 'Table mise à jour avec succès');

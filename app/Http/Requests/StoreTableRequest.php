@@ -24,6 +24,7 @@ class StoreTableRequest extends FormRequest
         return [
             'numero_table' => 'required',
             'capacite' => 'required',
+            'image' => 'required',
             'statut_table_id' => 'required|exists:statut_tables,id',
             'created_by' => 'required|exists:users,id'
 

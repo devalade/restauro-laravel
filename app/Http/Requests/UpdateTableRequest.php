@@ -24,6 +24,7 @@ class UpdateTableRequest extends FormRequest
         return [
             'numero_table' => 'required|integer',
             'capacite' => 'required|integer',
+            'image' => 'required|string'
         ];
     }
 }
