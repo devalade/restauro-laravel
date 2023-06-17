@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Statut_Table>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\StatutTable>
  */
 class StatutTableFactory extends Factory
 {

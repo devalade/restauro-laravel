@@ -14,10 +14,10 @@ class Table extends Model
         'capacite',
         'created_by'
     ];
-    
+
     public function statut_table() 
     {
-        return $this->belongsTo(Statut_Table::class);
+        return $this->belongsTo(StatutTable::class);
     }
 
     public function commandes()

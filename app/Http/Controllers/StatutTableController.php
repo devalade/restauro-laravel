@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Statut_Table;
-use App\Http\Requests\StoreStatut_TableRequest;
-use App\Http\Requests\UpdateStatut_TableRequest;
+use App\Models\StatutTable;
+use App\Http\Requests\StoreStatutTableRequest;
+use App\Http\Requests\UpdateStatutTableRequest;
 
 class StatutTableController extends Controller
 {
-    
+
     public function index()
     {
-        $statutTables = Statut_Table::all();
-        return view('statut_table.index', compact('statutTables'));
+        $statutTables = StatutTable::paginate();
+        return view('statut_tables.index', compact('statutTables'));
     }
 
 
@@ -22,35 +22,34 @@ class StatutTableController extends Controller
     }
 
     
-    public function store(StoreStatut_TableRequest $request)
+    public function store(StoreStatutTableRequest $request)
     {
-        $statut_table = new Statut_Table;
-        $statut_table->libelle = $request->libelle;
-        $statut_table->created_by = auth()->user()->id;
-        $statut_table->save();
+        $statutTable = new StatutTable();
+        $statutTable->libelle = $request->libelle;
+        $statutTable->created_by = auth()->user()->id;
+        $statutTable->save();
 
         return redirect()->route('statut_tables.index')->with('success', 'Statut de table créé avec succès');
     
     }
 
-    
-    public function show(Statut_Table $statut_Table)
+
+    public function show(StatutTable $statutTable)
     {
-        return view('statut_tables.show', compact('statut_table'));
+        return view('statut_tables.show', compact('statutTable'));
     }
 
-    
-    public function edit(Statut_Table $statut_Table)
-    {
-        return view('statut_tables.edit', compact('statut_Table'));
 
+    public function edit(StatutTable $statutTable)
+    {
+        return view('statut_tables.edit', compact('statutTable'));
     }
 
-    
-    public function update(UpdateStatut_TableRequest $request, Statut_Table $statut_Table)
+
+    public function update(UpdateStatutTableRequest $request, StatutTable $statutTable)
     {
-        $statut_Table->libelle = $request->libelle;
-        $statut_Table->save();
+        $statutTable->libelle = $request->libelle;
+        $statutTable->save();
 
         return redirect()->route('statut_tables.index')->with('success', 'Statut de table mis à jour avec succès');
    
@@ -59,9 +58,9 @@ class StatutTableController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Statut_Table $statut_Table)
+    public function destroy(StatutTable $statutTable)
     {
-        $statut_Table->delete();
+        $statutTable->delete();
 
         return redirect()->route('statut_tables.index')->with('success', 'Statut de table supprimée avec succès');
     

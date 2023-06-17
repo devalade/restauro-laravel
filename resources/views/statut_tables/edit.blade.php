@@ -6,7 +6,7 @@
 
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
-        <form action="{{route('statut_table.update', $statut_Table)}}" method="POST">
+        <form action="{{route('statut_tables.update', $statutTable)}}" method="POST">
             @method('Put')
             @csrf
 
@@ -16,7 +16,7 @@
                         <x-text-input type="text"
                                  name="libelle"
                                  id="libelle"
-                                 value="{{ old('libelle') ?? $statut_Table->libelle }}"
+                                 value="{{ old('libelle') ?? $statutTable->libelle }}"
                                  required
                         />
                         <x-input-error :messages="$errors->get('libelle')" class="mt-2" />

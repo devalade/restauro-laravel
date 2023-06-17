@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatutTableController;
+use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,9 +49,9 @@ Route::middleware('auth')->group(function () {
     Route::get('statut_tables', [StatutTableController::class, 'index'])->name('statut_tables.index');
     Route::get('statut_tables/create', [StatutTableController::class, 'create'])->name('statut_tables.create');
     Route::post('statut_tables/store', [StatutTableController::class, 'store'])->name('statut_tables.store');
-    Route::get('statut_tables/edit/{statut_Table}', [StatutTableController::class, 'edit'])->name('statut_tables.edit');
-    Route::put('statut_tables/update/{statut_Table}', [StatutTableController::class, 'update'])->name('statut_tables.update')->middleware('auth');
-    Route::delete('statut_tables/destroy/{statut_Table}', [StatutTableController::class, 'destroy'])->name('statut_tables.destroy');
+    Route::get('statut_tables/edit/{statutTable}', [StatutTableController::class, 'edit'])->name('statut_tables.edit');
+    Route::put('statut_tables/update/{statutTable}', [StatutTableController::class, 'update'])->name('statut_tables.update')->middleware('auth');
+    Route::delete('statut_tables/destroy/{statutTable}', [StatutTableController::class, 'destroy'])->name('statut_tables.destroy');
     
     Route::get('tables', [TableController::class, 'index'])->name('tables.index');
     Route::get('tables/create', [TableController::class, 'create'])->name('tables.create');

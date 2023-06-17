@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use App\Models\StatutTable;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
-use Illuminate\Support\Facades\Auth;
 
 
 class TableController extends Controller
@@ -14,7 +15,8 @@ class TableController extends Controller
     public function index()
     {
         //$tables = Table::paginate();
-        $tables = Table::with('statut_table')->get();
+        //$tables = Table::with('statut_table')->get();
+        $tables = Table::join('statut_tables', 'tables.statut_table_id', '=', 'statut_tables.id')->select('tables.*', 'statut_tables.libelle')->paginate();
 
         return view('tables.index', compact('tables'));
 
@@ -23,7 +25,9 @@ class TableController extends Controller
 
     public function create()
     {
-        return view('tables.create');
+    
+        $status = StatutTable::all();
+        return view('tables.create', compact('status'));
     }
 
     
@@ -35,6 +39,9 @@ class TableController extends Controller
         $table->statut_table_id = $request->statut_table_id;
         $table->created_by = auth()->user()->id;
         $table->save();
+
+        return redirect()->route('tables.index')->with('success', 'Table créé avec succès');
+
     }
 
     /**
