@@ -43,9 +43,8 @@
                         <p class="text-gray-900 whitespace-no-wrap">{{ $table->capacite }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $table->libelle }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $table->statut_table->libelle }}</p>
                     </td>
-
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
                         <a href="{{route('tables.edit', $table->id)}}"><button class="text-blue-900">Editer</button></a>
                         <form action="{{route('tables.destroy', $table->id)}}" method="POST" class="inline">

@@ -12,11 +12,12 @@ class Table extends Model
     protected $fillable = [
         'numero_table',
         'capacite',
+        'statut_table_id',
         'image',
         'created_by'
     ];
 
-    public function statut_table() 
+    public function statut_table()
     {
         return $this->belongsTo(StatutTable::class);
     }
@@ -26,5 +27,5 @@ class Table extends Model
         return $this->belongsToMany(Commande::class);
     }
 
-    
+
 }

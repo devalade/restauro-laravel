@@ -62,5 +62,5 @@ class CategoriePolicy
     public function forceDelete(User $user, Categorie $categorie): bool
     {
         //
-    }
+}
 }

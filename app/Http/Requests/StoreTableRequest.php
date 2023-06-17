@@ -14,20 +14,21 @@ class StoreTableRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'created_by' => auth()->user()->id
+        ]);
+    }
+
     public function rules(): array
     {
         return [
-            'numero_table' => 'required',
-            'capacite' => 'required',
-            'image' => 'required',
+            'numero_table' => ['required', 'numeric', 'min:1'],
+            'capacite' => ['required', 'numeric', 'min:1'],
+            'image' => ['nullable'],
             'statut_table_id' => 'required|exists:statut_tables,id',
             'created_by' => 'required|exists:users,id'
-
         ];
     }
 }

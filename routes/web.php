@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatutTableController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,15 +51,15 @@ Route::middleware('auth')->group(function () {
     Route::get('statut_tables/create', [StatutTableController::class, 'create'])->name('statut_tables.create');
     Route::post('statut_tables/store', [StatutTableController::class, 'store'])->name('statut_tables.store');
     Route::get('statut_tables/edit/{statutTable}', [StatutTableController::class, 'edit'])->name('statut_tables.edit');
-    Route::put('statut_tables/update/{statutTable}', [StatutTableController::class, 'update'])->name('statut_tables.update')->middleware('auth');
+    Route::put('statut_tables/update/{statutTable}', [StatutTableController::class, 'update'])->name('statut_tables.update');
     Route::delete('statut_tables/destroy/{statutTable}', [StatutTableController::class, 'destroy'])->name('statut_tables.destroy');
-    
+
     Route::get('tables', [TableController::class, 'index'])->name('tables.index');
+    Route::post('tables', [TableController::class, 'store'])->name('tables.store');
     Route::get('tables/create', [TableController::class, 'create'])->name('tables.create');
-    Route::post('tables/store', [TableController::class, 'store'])->name('tables.store');
-    Route::get('tables/edit/{Table}', [TableController::class, 'edit'])->name('tables.edit');
-    Route::put('tables/update/{Table}', [TableController::class, 'update'])->name('tables.update')->middleware('auth');
-    Route::delete('tables/destroy/Table}', [TableController::class, 'destroy'])->name('tables.destroy');
+    Route::get('tables/edit/{table}', [TableController::class, 'edit'])->name('tables.edit');
+    Route::put('tables/update/{table}', [TableController::class, 'update'])->name('tables.update');
+    Route::delete('tables/destroy/{table}', [TableController::class, 'destroy'])->name('tables.destroy');
 
 });
 

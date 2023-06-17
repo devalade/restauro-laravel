@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('numero_table');
             $table->integer('capacite');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->bigInteger('statut_table_id')->unsigned();
             $table->foreignId('created_by')->references('id')->on('users');
             $table->timestamps();

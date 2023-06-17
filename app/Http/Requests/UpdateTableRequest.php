@@ -22,9 +22,9 @@ class UpdateTableRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numero_table' => 'required|integer',
-            'capacite' => 'required|integer',
-            'image' => 'required|string'
+            'numero_table' => ['required','integer', 'min:1'],
+            'capacite' => ['required', 'numeric', 'min:1'],
+            'image' => 'nullable'
         ];
     }
 }
