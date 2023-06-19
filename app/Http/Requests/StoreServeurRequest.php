@@ -11,7 +11,15 @@ class StoreServeurRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
+    }
+
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'created_by' => auth()->user()->id
+        ]);
     }
 
     /**
@@ -22,7 +30,12 @@ class StoreServeurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => ['required', 'string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'contact' => ['required', 'string', 'max:255'],
+            'adresse' => ['nullable'],
+            'created_by' => 'required|exists:users,id'
+            
         ];
     }
 }

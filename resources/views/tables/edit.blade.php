@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Créer une table') }}
+        {{ __('Modifier une table') }}
     </x-slot>
 
 
