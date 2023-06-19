@@ -4,7 +4,7 @@
     </x-slot>
 
     <div class="flex justify-end mb-4">
-        <a class="inline-block">
+        <a  class="inline-block">
             <x-primary-button>Créer un utilisateur</x-primary-button>
         </a>
     </div>
