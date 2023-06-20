@@ -11,7 +11,7 @@ class StorePlatRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,10 +19,22 @@ class StorePlatRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
+
+     protected function prepareForValidation()
+     {
+         $this->merge([
+             'created_by' => auth()->user()->id
+         ]);
+     }
+
     public function rules(): array
     {
         return [
-            //
+            'libelle' => ['required', 'string', 'min:1'],
+            'description' => ['required', 'string', 'min:5'],
+            'prix' => ['required', 'numeric'],
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'created_by' => 'required|exists:users,id'
         ];
     }
 }

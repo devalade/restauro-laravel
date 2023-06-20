@@ -11,7 +11,7 @@ class UpdatePlatRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdatePlatRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'libelle' => ['required', 'numeric', 'min:1'],
+            'description' => ['required', 'string'],
+            'prix' => ['required', 'integer'],
+            'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
+            'created_by' => 'required|exists:users,id'
         ];
     }
 }

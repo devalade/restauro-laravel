@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServeurController;
 use App\Http\Controllers\StatutTableController;
@@ -68,6 +69,13 @@ Route::middleware('auth')->group(function () {
     Route::get('serveurs/edit/{serveur}', [ServeurController::class, 'edit'])->name('serveurs.edit');
     Route::put('serveurs/update/{serveur}', [ServeurController::class, 'update'])->name('serveurs.update');
     Route::delete('serveurs/destroy/{serveur}', [ServeurController::class, 'destroy'])->name('serveurs.destroy');
+    
+    Route::get('plats', [PlatController::class, 'index'])->name('plats.index');
+    Route::post('plats', [PlatController::class, 'store'])->name('plats.store');
+    Route::get('plats/create', [PlatController::class, 'create'])->name('plats.create');
+    Route::get('plats/edit/{serveur}', [PlatController::class, 'edit'])->name('plats.edit');
+    Route::put('plats/update/{serveur}', [PlatController::class, 'update'])->name('plats.update');
+    Route::delete('plats/destroy/{serveur}', [PlatController::class, 'destroy'])->name('plats.destroy');
 
 });
 
