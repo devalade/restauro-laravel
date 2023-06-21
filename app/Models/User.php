@@ -10,10 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -51,20 +52,6 @@ class User extends Authenticatable
 
     public function restaurant(): HasOne {
         return $this->hasOne(Restaurant::class, 'created_by');
-    }
-
-    public function roles(): BelongsToMany {
-        return $this->belongsToMany(Role::class);
-    }
-
-    /* fonction qui permet de savoir si l'utilisateur est admin */
-    public function isAdmin(): User {
-        return $this->roles()->where('nom', 'admin')->first();
-    }
-
-    /* fonction qui permet d'avoir les roles  */
-    public function hasAnyRole(array $roles) {
-        return $this->roles()->whereIn('nom', $roles)->first();
     }
 
     public function commandes(){

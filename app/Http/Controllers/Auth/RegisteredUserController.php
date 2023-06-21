@@ -49,8 +49,9 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        $role = Role::select('id')->where('nom', 'client')->first();
-        $user->roles()->attach($role);
+
+        $user->assignRole('admin');
+        $user->assignRole('client');
 
         Restaurant::create([
             'designation' => 'Mon restaurant',
