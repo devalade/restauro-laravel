@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PlatController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServeurController;
 use App\Http\Controllers\StatutTableController;
 use App\Http\Controllers\TableController;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +62,20 @@ Route::middleware('auth')->group(function () {
     Route::get('tables/edit/{table}', [TableController::class, 'edit'])->name('tables.edit');
     Route::put('tables/update/{table}', [TableController::class, 'update'])->name('tables.update');
     Route::delete('tables/destroy/{table}', [TableController::class, 'destroy'])->name('tables.destroy');
+
+    Route::get('serveurs', [ServeurController::class, 'index'])->name('serveurs.index');
+    Route::post('serveurs', [ServeurController::class, 'store'])->name('serveurs.store');
+    Route::get('serveurs/create', [ServeurController::class, 'create'])->name('serveurs.create');
+    Route::get('serveurs/edit/{serveur}', [ServeurController::class, 'edit'])->name('serveurs.edit');
+    Route::put('serveurs/update/{serveur}', [ServeurController::class, 'update'])->name('serveurs.update');
+    Route::delete('serveurs/destroy/{serveur}', [ServeurController::class, 'destroy'])->name('serveurs.destroy');
+    
+    Route::get('plats', [PlatController::class, 'index'])->name('plats.index');
+    Route::post('plats', [PlatController::class, 'store'])->name('plats.store');
+    Route::get('plats/create', [PlatController::class, 'create'])->name('plats.create');
+    Route::get('plats/edit/{serveur}', [PlatController::class, 'edit'])->name('plats.edit');
+    Route::put('plats/update/{serveur}', [PlatController::class, 'update'])->name('plats.update');
+    Route::delete('plats/destroy/{serveur}', [PlatController::class, 'destroy'])->name('plats.destroy');
 
 });
 

@@ -32,16 +32,11 @@ class TableController extends Controller
 
     public function store(StoreTableRequest $request)
     {
-//        $file = $request->file('image');
-//        $name = $file->getClientOriginalName();
-//        Storage::put($name, $file, 'public');
         Table::create(array_merge($request->validated()));
         return redirect()->route('tables.index')->with('success', 'Table créé avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Table $table)
     {
         $table->load('statut_table');

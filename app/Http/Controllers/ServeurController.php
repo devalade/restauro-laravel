@@ -13,54 +13,54 @@ class ServeurController extends Controller
      */
     public function index()
     {
-        //
+        $serveurs = Serveur::paginate();
+        return view('serveurs.index', compact('serveurs'));
+    
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
-        //
+        return view('serveurs.create');
+    
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreServeurRequest $request)
     {
-        //
+        Serveur::create(array_merge($request->validated()));
+        return redirect()->route('serveurs.index')->with('success', 'Serveur créé avec succès');
+   
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Serveur $serveur)
     {
-        //
+        return view('serveurs.show', compact('serveur'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Serveur $serveur)
     {
-        //
+        return view('serveurs.edit', compact('serveur'));
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateServeurRequest $request, Serveur $serveur)
     {
-        //
+        $serveur->update($request->validated());
+        return redirect()->route('serveurs.index')->with('success', 'Serveur mise à jour avec succès');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Serveur $serveur)
     {
-        //
+        $serveur->delete();
+
+        return redirect()->route('serveurs.index')->with('success', 'Serveur supprimée avec succès');
+
+    
     }
 }

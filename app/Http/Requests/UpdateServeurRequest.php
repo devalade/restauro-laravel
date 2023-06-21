@@ -11,7 +11,7 @@ class UpdateServeurRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateServeurRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nom' => ['required','string', 'max:255'],
+            'prenom' => ['required', 'string', 'max:255'],
+            'contact' => ['required', 'string', 'max:255'],
+            'adresse' => 'nullable'
         ];
     }
 }
