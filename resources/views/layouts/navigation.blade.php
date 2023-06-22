@@ -33,6 +33,17 @@
             {{ __('Utilsateur') }}
         </x-nav-link>
 
+
+        <x-nav-link href="{{ route('commandes.index') }}" :active="request()->routeIs('commandes.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                </svg>
+            </x-slot>
+            {{ __('Commandes') }}
+
+        </x-nav-link>
+
         <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('about')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">

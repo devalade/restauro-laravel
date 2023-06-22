@@ -69,7 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('serveurs/edit/{serveur}', [ServeurController::class, 'edit'])->name('serveurs.edit');
     Route::put('serveurs/update/{serveur}', [ServeurController::class, 'update'])->name('serveurs.update');
     Route::delete('serveurs/destroy/{serveur}', [ServeurController::class, 'destroy'])->name('serveurs.destroy');
-    
+
     Route::get('plats', [PlatController::class, 'index'])->name('plats.index');
     Route::post('plats', [PlatController::class, 'store'])->name('plats.store');
     Route::get('plats/create', [PlatController::class, 'create'])->name('plats.create');
@@ -77,6 +77,8 @@ Route::middleware('auth')->group(function () {
     Route::put('plats/update/{serveur}', [PlatController::class, 'update'])->name('plats.update');
     Route::delete('plats/destroy/{serveur}', [PlatController::class, 'destroy'])->name('plats.destroy');
 
+    Route::get('/commandes', [\App\Http\Controllers\CommandeController::class, 'index'])->name('commandes.index');
+    Route::put('/commandes/{commande}', [\App\Http\Controllers\CommandeController::class, 'update'])->name('commandes.update');
 });
 
 require __DIR__.'/auth.php';

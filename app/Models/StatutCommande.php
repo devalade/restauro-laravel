@@ -5,13 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Statut_Commande extends Model
+class StatutCommande extends Model
 {
     use HasFactory;
 
+    const EN_COURS = 'EN_COURS';
+    const TRAITE = 'TRAITE';
+    const NON_TRAITE = 'NON_TRAITE';
+
     protected $fillable = [
         'libelle',
-        'created_by'
+        'code'
     ];
 
     public function commandes(){

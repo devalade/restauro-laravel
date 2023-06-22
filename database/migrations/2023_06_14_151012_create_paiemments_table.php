@@ -16,9 +16,8 @@ return new class extends Migration
             $table->decimal('montant', 8, 2);
             $table->string('mode_paiemment');
             $table->string('statut_paiemment');
-            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

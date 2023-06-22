@@ -12,7 +12,12 @@ class Commande extends Model
     protected $fillable = [
         'quantite',
         'prix_total',
-        'total_recu'
+        'total_recu',
+        'serveur_id',
+        'statut_commande_id',
+        'paiemment_id',
+        'user_id',
+        'table_id',
     ];
 
     public function serveur(){
@@ -31,7 +36,7 @@ class Commande extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+
 
     public function plats()
     {

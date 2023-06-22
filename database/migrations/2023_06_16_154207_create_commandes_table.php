@@ -16,17 +16,13 @@ return new class extends Migration
             $table->integer('quantite');
             $table->decimal('prix_total')->default(0);
             $table->decimal('total_recu')->default(0);
-            $table->bigInteger('serveur_id')->unsigned();
-            $table->bigInteger('statut_commande_id')->unsigned();
-            $table->bigInteger('paiemment_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('table_id')->unsigned();
+            $table->foreignId('serveur_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('statut_commande_id')->references('id')->on('statut_commandes')->onDelete('cascade');
+            $table->foreignId('paiemment_id')->references('id')->on('paiemments')->onDelete('cascade');
+            $table->foreignId('restaurant_id')->references('id')->on('restaurants')->onDelete('cascade');
+            $table->foreignId('table_id')->references('id')->on('tables')->onDelete('cascade');
+            $table->foreignId('plat_id')->references('id')->on('plats')->onDelete('cascade');
             $table->timestamps();
-            $table->foreign('serveur_id')->references('id')->on('serveurs')->onDelete('cascade');
-            $table->foreign('statut_commande_id')->references('id')->on('statut_commandes')->onDelete('cascade');
-            $table->foreign('paiemment_id')->references('id')->on('paiemments')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('table_id')->references('id')->on('tables')->onDelete('cascade');
         });
     }
 
