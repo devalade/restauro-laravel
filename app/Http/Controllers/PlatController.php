@@ -33,7 +33,12 @@ class PlatController extends Controller
     {
         $slug = Str::slug($request->input('libelle'));
         $image = $request->file('image');
-        $imageName = $slug . '.' . $image->getClientOriginalExtension();
+        if ($image) {
+            $imageName = $slug . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/plats'), $imageName);
+        } else {
+            $imageName = null;
+        }
         $image->move(public_path('images/plats'), $imageName);
         Plat::create(array_merge($request->validated(), ['slug' => $slug,  'image' => $imageName]));
         return redirect()->route('plats.index')->with('success', 'Plat créé avec succès');

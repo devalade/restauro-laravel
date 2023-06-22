@@ -5,7 +5,7 @@
 
     <div class="flex justify-end mb-4">
         <a href="{{ route('serveurs.create')  }}" class="inline-block">
-            <x-primary-button>Créer une table</x-primary-button>
+            <x-primary-button>Créer un serveur</x-primary-button>
         </a>
     </div>
 
@@ -23,13 +23,13 @@
                     Prenom
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Statut table
-                </th>
-                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                     Contact
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                     Adresse
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Editer
                 </th>
             </tr>
             </thead>
