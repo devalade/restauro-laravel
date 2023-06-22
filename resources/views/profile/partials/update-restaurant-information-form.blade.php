@@ -19,26 +19,26 @@
 
         <div>
             <x-input-label for="nom" :value="__('Désignation')" />
-{{--             <x-text-input id="nom" name="nom" type="text" class="mt-1 block w-full" :value="old('designation', $user->restaurant->designation)" required autofocus autocomplete="nom" />
- --}}            <x-input-error class="mt-2" :messages="$errors->get('nom')" />
+             <x-text-input id="designation" name="designation" type="text" class="mt-1 block w-full" :value="old('designation', $user->restaurant->designation)" required autofocus autocomplete="designation" />
+             <x-input-error class="mt-2" :messages="$errors->get('designation')" />
         </div>
 
         <div>
-            <x-input-label for="nom" :value="__('Description')" />
-{{--             <x-text-input id="nom" name="nom" type="text" class="mt-1 block w-full" :value="old('designation', $user->restaurant->description)" required autofocus autocomplete="nom" />
- --}}            <x-input-error class="mt-2" :messages="$errors->get('nom')" />
+            <x-input-label for="description" :value="__('Description')" />
+             <x-text-input id="description" name="description" type="text" class="mt-1 block w-full" :value="old('description', $user->restaurant->description)" required autofocus autocomplete="description" />
+             <x-input-error class="mt-2" :messages="$errors->get('description')" />
         </div>
 
         <div>
             <x-input-label for="contact" :value="__('Contact')" />
-{{--             <x-text-input id="contact" name="contact" type="text" class="mt-1 block w-full" :value="old('contact', $user->restaurant->contact)" required autofocus autocomplete="contact" />
- --}}            <x-input-error class="mt-2" :messages="$errors->get('contact')" />
+             <x-text-input id="contact" name="contact" type="text" class="mt-1 block w-full" :value="old('contact', $user->restaurant->contact)" required autofocus autocomplete="contact" />
+             <x-input-error class="mt-2" :messages="$errors->get('contact')" />
         </div>
 
         <div>
             <x-input-label for="email" :value="__('Email')" />
-{{--             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->restaurant->email)" required autocomplete="username" />
- --}}            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->restaurant->email)" required autocomplete="email" />
+             <x-input-error class="mt-2" :messages="$errors->get('email')" />
         </div>
 
         <div class="flex items-center gap-4">

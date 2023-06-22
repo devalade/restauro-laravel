@@ -35,8 +35,8 @@
 
                 <div>
                     <x-input-label for="statut_table_id" :value="__('Statut Table')"/>
-                    <select id="statut_table_id" name="statut_table_id" >
-                        <option value=""></option>
+                    <select id="statut_table_id" name="statut_table_id"  class="rounded-md w-full">
+                        <option value="" disabled>Sélectionner un statut</option>
                         @foreach($status as $status)
                         <option value="{{ $status->id }}" {{ old('statut_table_id') == $status->id ? 'selected' : '' }}>{{ $status->libelle }}</option>
                         @endforeach

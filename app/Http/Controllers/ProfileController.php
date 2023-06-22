@@ -40,9 +40,7 @@ class ProfileController extends Controller
 
     public function updateRestaurant(ProfileRestaurantUpdateRequest $request): RedirectResponse
     {
-        dd($request->validated());
         $restaurant = auth()->user()->restaurant;
-        dd($restaurant);
         $restaurant->update($request->validated());
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

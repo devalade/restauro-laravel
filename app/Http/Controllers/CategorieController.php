@@ -18,7 +18,7 @@ class CategorieController extends Controller
 
     public function index()
     {
-        $categories = Categorie::paginate();
+        $categories = Categorie::query()->where('created_by', Auth::user()->id)->paginate();
 
         return view('categories.index', compact('categories'));
     }
