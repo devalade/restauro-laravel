@@ -12,7 +12,6 @@
             <span class="text-white text-2xl mx-2 font-semibold">{{ __('Restauro') }}</span>
         </div>
     </div>
-
     <nav class="mt-10" x-data="{ isMultiLevelMenuOpen: false }">
         <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
             <x-slot name="icon">
@@ -24,6 +23,7 @@
             {{ __('Tableau de bord') }}
         </x-nav-link>
 
+    @hasrole('admin')
         <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,9 @@
             {{ __('Utilsateur') }}
         </x-nav-link>
 
+    @endhasrole
 
+        @hasanyrole('admin|serveur')
         <x-nav-link href="{{ route('commandes.index') }}" :active="request()->routeIs('commandes.index')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,8 +43,9 @@
                 </svg>
             </x-slot>
             {{ __('Commandes') }}
-
         </x-nav-link>
+        @endhasrole
+
 {{--        <x-nav-link href="{{ route('reservations.index') }}" :active="request()->routeIs('reservations.index')">--}}
 {{--            <x-slot name="icon">--}}
 {{--                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">--}}
@@ -53,6 +56,7 @@
 
 {{--        </x-nav-link>--}}
 
+        @hasrole('admin')
         <x-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('about')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,8 +64,8 @@
                 </svg>
             </x-slot>
             {{ __('Catégorie') }}
-
         </x-nav-link>
+
         <x-nav-link href="{{ route('statut_tables.index') }}" :active="request()->routeIs('about')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -97,7 +101,7 @@
             </x-slot>
             {{ __('Serveur') }}
         </x-nav-link>
-
+@endhasrole
         <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
