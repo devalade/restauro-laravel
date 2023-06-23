@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Notifications\SendUserPasswordNotification;
 use Database\Seeders\PermissionAndRoleSeeder;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -16,15 +21,15 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate();
-
+        Gate::allowIf(Auth::user()->hasRole('admin'));
+        $users = User::where('created_by', Auth::user()->id)->paginate();
         return view('users.index', compact('users'));
     }
 
 
     public function create()
     {
-        $roles = PermissionAndRoleSeeder::all();
+        $roles = \Spatie\Permission\Models\Role::all();
         return view('users.create', ['roles' => $roles]);
     }
 
@@ -37,21 +42,22 @@ class UserController extends Controller
             'sexe' => 'required',
             'contact' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-            'roles' => 'required|array'
         ]);
 
     // Création d'un nouvel utilisateur avec les données validées
-        $user = new User();
-        $user->nom = $validatedData['nom'];
-        $user->prenom = $validatedData['prenom'];
-        $user->sexe = $validatedData['sexe'];
-        $user->contact = $validatedData['contact'];
-        $user->email = $validatedData['email'];
-        $user->password = bcrypt($validatedData['password']);
-        $user->save();
+        $password = Str::password(12);
+        $user = User::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'sexe' => $request->sexe,
+            'contact' => $request->contact,
+            'email' => $request->email,
+            'password' => Hash::make($password),
+            'created_by' => Auth::user()->id
+        ]);
 
-        $user->roles()->sync($validatedData['roles']);
+        $user->assignRole(['serveur', 'client']);
+        \Illuminate\Support\Facades\Notification::send($user, new SendUserPasswordNotification($user,$password));
 
         return redirect()->route('users.index')->with('success', 'L\'utilisateur a été créé avec succès.');
 }
@@ -59,10 +65,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles = Role::all();
+        $roles = \Spatie\Permission\Models\Role::all();
         return view('users.edit', [
             'user' => $user,
-            'roles' => $roles
         ]);
 
     }
@@ -81,7 +86,6 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $user->roles()->detach();
         $user->delete();
         return redirect()->route('users.index');
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('statut_commandes', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('libelle');
             $table->timestamps();
         });

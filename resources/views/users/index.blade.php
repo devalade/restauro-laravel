@@ -63,7 +63,7 @@
                         <p class="text-gray-900 whitespace-no-wrap">{{ $user->email }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ implode(', ', $user->roles()->get()->pluck('nom')->toArray()) }}</p>
+                        <p class="whitespace-no-wrap text-center px-1 py-.5 rounded-full bg-amber-100 text-amber-800">{{ $user->getRoleNames()[0] }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
                         <a href="{{route('users.edit', $user->id)}}"><button class="text-blue-900">Editer</button></a>

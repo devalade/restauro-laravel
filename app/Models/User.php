@@ -28,6 +28,7 @@ class User extends Authenticatable
         'contact',
         'email',
         'password',
+        'created_by',
     ];
 
     /**

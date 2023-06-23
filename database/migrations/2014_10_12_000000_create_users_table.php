@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->foreignId('created_by')->nullable()->references('id')->on('users');
             $table->rememberToken();
             $table->timestamps();
         });
