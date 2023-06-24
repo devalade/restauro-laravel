@@ -81,6 +81,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/commandes', [\App\Http\Controllers\CommandeController::class, 'index'])->name('commandes.index');
     Route::put('/commandes/{commande}', [\App\Http\Controllers\CommandeController::class, 'update'])->name('commandes.update');
+
+    Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index'])->name('reservations.index');
+    Route::put('/reservations/{reservation}', [\App\Http\Controllers\ReservationController::class, 'update'])->name('reservations.update');
+
+
 });
 
 require __DIR__.'/auth.php';
