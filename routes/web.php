@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServeurController;
 use App\Http\Controllers\StatutTableController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\ReservationController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -82,9 +84,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/commandes', [\App\Http\Controllers\CommandeController::class, 'index'])->name('commandes.index');
     Route::put('/commandes/{commande}', [\App\Http\Controllers\CommandeController::class, 'update'])->name('commandes.update');
 
-    Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index'])->name('reservations.index');
-    Route::put('/reservations/{reservation}', [\App\Http\Controllers\ReservationController::class, 'update'])->name('reservations.update');
-
+    Route::get('reservations', [ReservationController::class, 'index'])->name('reservations.index');
+    Route::post('reservations', [ReservationController::class, 'store'])->name('reservations.store');
+    Route::get('reservations/create', [ReservationController::class, 'create'])->name('reservations.create');
+    Route::get('reservations/edit/{reservation}', [ReservationController::class, 'edit'])->name('reservations.edit');
+    Route::put('reservations/update/{reservation}', [ReservationController::class, 'update'])->name('reservations.update');
+    Route::delete('reservations/destroy/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
 });
 

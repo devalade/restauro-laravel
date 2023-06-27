@@ -8,12 +8,10 @@ use App\Http\Requests\UpdateReservationRequest;
 
 class ReservationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
-        $reservations = Reservation::all();
+        $reservations = Reservation::paginate();
         return view('reservation.index', compact('reservations'));
    
     }
@@ -21,76 +19,43 @@ class ReservationController extends Controller
     
     public function create()
     {
-        //
+        return view('reservation.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(StoreReservationRequest $request)
     {
-        $reservation = new Reservation();
-        $reservation->nomclient = $request->input('nomclient');
-        $reservation->dateReservation = $request->input('dateReservation');
-        $reservation->heure = $request->input('heure');
-        $reservation->nombrePersonne = $request->input('nombrePersonne');
-        // Autres attributs...
-
-        $reservation->save();
-
-        return response()->json(['message' => 'Reservation faite avec succes']);
+        Reservation::create(array_merge($request->validated()));
+        return redirect()->route('reservationd.index')->with('success', 'Réservation créé avec succès');
+    
     
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Reservation $reservation)
     {
-        //
+        return view('reservations.show', compact('reservation'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Reservation $reservation)
     {
-        $reservation = Reservation::find();
-
-        if (!$reservation) {
-            return response()->json(['message' => 'Reservation not found'], 404);
-        }
-
-        return response()->json($reservation);  
+        return view('reservations.edit', compact('reservation'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(UpdateReservationRequest $request, Reservation $reservation)
     {
-        $reservation = Reservation::find();
-
-        if (!$reservation) {
-            return response()->json(['message' => 'Reservation not found'], 404);
-        }
-
-        $reservation->nomclient = $request->input('nomclient');
-        $reservation->dateReservation = $request->input('dateReservation');
-        $reservation->heure = $request->input('heure');
-        $reservation->nombrePersonne = $request->input('nombrePersonne');
-        // Autres attributs...
-
-        $reservation->save();
-
-        
+        $reservation->update($request->validated());
+        return redirect()->route('reservations.index')->with('success', 'Réservation mis à jour avec succès');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Reservation $reservation)
     {
-        //
+        $reservation->delete();
+
+        return redirect()->route('reservation.index')->with('success', 'Reservation supprimée avec succès');
+
     }
 }

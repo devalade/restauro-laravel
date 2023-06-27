@@ -30,6 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/table', [\App\Http\Controllers\Api\TableController::class, 'index']);
     Route::get('/commandes', [\App\Http\Controllers\Api\TableController::class, 'index']);
     Route::get('/reservations', [\App\Http\Controllers\Api\ReservationController::class, 'index']);
+    Route::post('/reservations', [\App\Http\Controllers\Api\ReservationController::class, 'create']);
+    Route::get('/reservations/{reservation}', [\App\Http\Controllers\Api\ReservationController::class, 'store']);
 });
 
 Route::get('tables', function () {

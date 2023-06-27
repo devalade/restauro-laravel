@@ -13,7 +13,8 @@ class Reservation extends Model
         'nomclient',
         'dateReservation',
         'heure',
-        'nombrePersonne'
+        'nombrePersonne',
+        'prix'
     ];
 
 
