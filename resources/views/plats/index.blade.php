@@ -56,8 +56,7 @@
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
                         <span>
-{{--                            <p>{{ public_path($plat->image)   }}</p>--}}
-{{--                            <img height="200" width="200" src="{{ public_path( $plat->image)  }}" />--}}
+                            <img class="rounded-3xl" height="50" width="50" src="{{ asset( $plat->image)  }}" />
                         </span>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
