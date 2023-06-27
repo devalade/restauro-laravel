@@ -51,6 +51,8 @@
             <x-primary-button type="submit">Créer un serveur</x-primary-button>
         </form>
 
+
+
     </div>
 
 </x-app-layout>

@@ -58,17 +58,13 @@ class CategorieController extends Controller
         return view('categories.show', compact('categorie'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    
     public function edit(Categorie $categorie)
     {
         return view('categories.edit', compact('categorie'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
 

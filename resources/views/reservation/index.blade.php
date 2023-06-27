@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Liste des Réservations') }}
+        {{ __('Liste des réservations') }}
     </x-slot>
 
+    <div class="flex justify-end mb-4">
+        <a href="{{ route('reservations.create')  }}" class="inline-block">
+            <x-primary-button>Créer une réservation</x-primary-button>
+        </a>
+    </div>
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
         <table class="min-w-full leading-normal">
@@ -12,12 +17,17 @@
                     ID
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Nom 
+                    Nom Client
                 </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
-                    Table 
+                    Date pour la réservation
                 </th>
-
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Heure pour la réservation
+                </th>
+                <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
+                    Nombre de personne
+                </th>
                 <th class="px-5 py-3 text-xs font-semibold tracking-wider text-left text-gray-600 uppercase bg-gray-100 border-b-2 border-gray-200">
                     Action
                 </th>
@@ -27,20 +37,29 @@
             @foreach($reservations as $reservation)
                 <tr>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->id }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->id }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->nom }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->nomclient }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $user->table }}</p>
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->dateReservation }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->heure }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->nombrePersonne }}</p>
+                    </td>
+                    <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+                        <p class="text-gray-900 whitespace-no-wrap">{{ $reservation->prix }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
-                        <form action="{{route('commandes.update', $user->id)}}" method="POST" class="inline">
+                        <a href="{{route('réservations.edit', $reservation->id)}}"><button class="text-blue-900">Editer</button></a>
+                        <form action="{{route('réservations.destroy', $reservation->id)}}" method="POST" class="inline">
                             @csrf
-                            @method('PUT')
-                            <input name="" class="sr-only" />
-                            <button class="text-red-800">Editer</button>
+                            @method('DELETE')
+                            <button class="text-red-800">Supprimer</button>
                         </form>
                     </td>
                 </tr>
@@ -48,9 +67,9 @@
             </tbody>
         </table>
 
-{{--        <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">--}}
-{{--            {{ $users->links() }}--}}
-{{--        </div>--}}
+        <div class="flex flex-col items-center px-5 py-5 bg-white border-t xs:flex-row xs:justify-between">
+            {{ $reservations->links() }}
+        </div>
     </div>
 
 </x-app-layout>

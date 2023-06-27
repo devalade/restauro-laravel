@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReservationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/categories', [\App\Http\Controllers\Api\CategoryController::class, 'index']);
     Route::get('/table', [\App\Http\Controllers\Api\TableController::class, 'index']);
     Route::get('/commandes', [\App\Http\Controllers\Api\TableController::class, 'index']);
+    Route::get('/reservations', [\App\Http\Controllers\Api\ReservationController::class, 'index']);
+    Route::post('/reservations', [\App\Http\Controllers\Api\ReservationController::class, 'create']);
+    Route::get('/reservations/{reservation}', [\App\Http\Controllers\Api\ReservationController::class, 'store']);
 });
 
 Route::get('tables', function () {
