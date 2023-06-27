@@ -6,7 +6,7 @@
 
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
-        <form action="{{  route('plats.store') }}" method="post">
+        <form action="{{  route('plats.store') }}" method="post" enctype="multipart/form-data" >
             @csrf
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 mb-4">
                 <div>
@@ -52,7 +52,7 @@
                     <x-input-error :messages="$errors->get('image')" class="mt-2" />
                 </div>
 
-                
+
             </div>
             <x-primary-button type="submit">Créer un plats</x-primary-button>
         </form>

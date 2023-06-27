@@ -33,6 +33,7 @@ class StorePlatRequest extends FormRequest
             'libelle' => ['required', 'string', 'min:1'],
             'description' => ['required', 'string', 'min:5'],
             'prix' => ['required', 'numeric'],
+            'categorie_id' => ['required'],
             'image' => ['required', 'image', 'mimes:png,jpg,jpeg', 'max:2048'],
             'created_by' => 'required|exists:users,id'
         ];

@@ -55,7 +55,10 @@
                         <p class="text-gray-900 whitespace-no-wrap">{{ $plat->categorie->libelle }}</p>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ $plat->image }}</p>
+                        <span>
+{{--                            <p>{{ public_path($plat->image)   }}</p>--}}
+{{--                            <img height="200" width="200" src="{{ public_path( $plat->image)  }}" />--}}
+                        </span>
                     </td>
                     <td class="px-5 py-5 text-sm bg-white border-b border-gray-200 flex gap-x-2">
                         <a href="{{route('plats.edit', $plat->slug)}}"><button class="text-blue-900">Editer</button></a>

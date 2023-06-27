@@ -17,7 +17,7 @@ class PlatController extends Controller
         $plats = Plat::with('categorie')->paginate();
 
         return view('plats.index', compact('plats'));
-    
+
     }
 
 
@@ -25,32 +25,30 @@ class PlatController extends Controller
     {
         $categories = Categorie::all();
         return view('plats.create', compact('categories'));
-   
+
     }
 
-    
+
     public function store(StorePlatRequest $request)
     {
         $slug = Str::slug($request->input('libelle'));
         $image = $request->file('image');
+            $imageName = null;
         if ($image) {
             $imageName = $slug . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images/plats'), $imageName);
-        } else {
-            $imageName = null;
         }
-        $image->move(public_path('images/plats'), $imageName);
-        Plat::create(array_merge($request->validated(), ['slug' => $slug,  'image' => $imageName]));
+        Plat::create(array_merge($request->validated(), ['slug' => $slug,  'image' => 'images/plats/' . $imageName]));
         return redirect()->route('plats.index')->with('success', 'Plat créé avec succès');
-        
+
     }
 
-    
+
     public function show(Plat $plat)
     {
         $plat->load('categorie');
         return view('plats.show', compact('plat'));
-   
+
     }
 
 
@@ -58,10 +56,10 @@ class PlatController extends Controller
     {
         $categories = Categorie::all();
         return view('plats.edit', compact('plat', 'categories'));
-    
+
     }
 
-    
+
     public function update(UpdatePlatRequest $request, Plat $plat)
     {
         if ($plat->libelle !== $request->input('libelle')) {
@@ -78,7 +76,7 @@ class PlatController extends Controller
         return redirect()->route('plats.index')->with('success', 'Plat mise à jour avec succès');
     }
 
-    
+
     public function destroy(Plat $plat)
     {
         $plat->delete();

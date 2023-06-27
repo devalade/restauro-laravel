@@ -12,6 +12,7 @@ class Plat extends Model
         'libelle',
         'slug',
         'description',
+        'categorie_id',
         'prix',
         'image',
         'created_by'
